@@ -47,4 +47,43 @@ Namaste react
 18) But the code structure is very complex and hard to read using this concept.
 19) To overcome this complexity the JSX is introduced.
 
+
+***********************Lecture 02 **********************************
+
+1) npm does not stands for node package manager even doesn't have any full form.
+2) npm is a standard repository for all the packages, all the packages are hosted there.
+3) command to initialize (npm init).
+4) install package bundler.
+5)  some bundler name web pack,weat, parsel.
+6) npm install -D parcel
+7) difference between package.json and package-lock.json.
+8) .gitignore
+9) If you have package-lock.json and package.json then the node_modules can be regenerated.(npm install)
+
+10) to ignite our app use command npx parcel index.html
+11) npm install react
+12) npm install react-dom
+13) remove the cdn link in your project because there is no need to hit the cdn link again and again after install react in your project.
+14) but need to import the react at the top of the file.
+15) <script type="module" src="./app.js"></script> --type= "module" is added in this script tag for the browser understanding that this is not a normal javascript file.
+16) parcel working functionalities: 
+      * Dev Build
+      * Local Server
+      * HMR: Hot Module Replacement
+      * File watching algorighms written in c++
+      * caching things
+      * Image optimization
+      * minification files
+      * Bundling
+      * Compress
+      * Consistent Hashing
+      * Code splitting
+      * Differential Bundling : support older browsers
+      * Diagnostic
+      * Error Handlings
+      * HTTPS
+      * tree shaking : remove unused code
+17) for production build (npx parcel build index.html);
+18) browserlist tool
+
  
