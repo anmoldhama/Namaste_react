@@ -85,5 +85,36 @@ Namaste react
       * tree shaking : remove unused code
 17) for production build (npx parcel build index.html);
 18) browserlist tool
+19) 
+
+************************Lecture 03****************************************
+1) npm run start ----to start the react app
+2) npm run build ----to create a production build
+3) What is JSX?
+4) React is also written without jsx.
+5) JSX is not the mandatory for react.
+6) JSX is not html inside javascript.
+7) JSX has html like syntax.
+8) Babel installed by Parcel have a job to convert jsx code into React.createElement code.
+9) Various attributes in used in jsx.
+10) In jsx it is mandatory use () if code is written is in multiple lines.
+11) install extension on vs code : 1) Prettier code 2) Bracket pair colourizer.
+12) Two ways to write react components are: 
+      a) Class based components.
+      b) Functional based components.
+13) A function that is returning a jsx component is known as functional based component.
+14) To render react functional components use root.render(<JsxHeading />);
+15) component name should be in pascal case.
+16) component composition : It is a component call inside another component.
+17) 
+
+***************************Lecture 04**********************************
+
+1) Create component for resraurant cards.
+2) add header,body and footer
+3) config driver ui.
+4) loop over the data using map filter.
+5) always give a key to the component because react need this key at the time of rendering the component.
+6) React itself says that never use index as the key.
 
  
