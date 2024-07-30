@@ -1,28 +1,18 @@
 import { useEffect, useState } from 'react';
 import RestaurantCards from '../components/RestaurantCards';
 import { cards as mockCards } from '../utils/mockData';
+import { Link } from 'react-router-dom';
 
 const Body = () => {
     const [filteredCards, setFilteredCards] = useState(mockCards);
     const [filteredRestaurant, setFilteredRestaurant] = useState(mockCards);
     const [searchText, setSearchText] = useState("");
 
-    // useEffect(() => {
-    //     fetchList();
-    // }, []);
-
     const topRatedSearchHandler = () => {
         const ratingFilter = filteredCards.filter((res) => res.Rating >= 4.6);
         setFilteredCards(ratingFilter);
         setFilteredRestaurant(ratingFilter); // To update the filteredRestaurant state as well
     }
-
-    // const fetchList = async () => {
-    //     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.61450&lng=77.30630&collection=83637&tags=layout_CCS_Burger&sortBy=&filters=&type=rcv2&offset=0&page_type=null");
-    //     const fetchedData = await data.json();
-    //     console.log("fetched data", fetchedData.data.cards);
-    //     setFilteredCards(fetchedData.data.cards);
-    // }
 
     const handleSearchText = () => {
         const searchFilter = filteredCards.filter((res) =>
@@ -46,8 +36,13 @@ const Body = () => {
                 </button>
             </div>
             <div className="res-container">
-                {filteredRestaurant.map((restaurant, index) => (
-                    <RestaurantCards key={index} cards={[restaurant]} />
+                {filteredRestaurant.map((restaurant) => (
+                    <Link
+                     key={restaurant.id}
+                     to={"/restaurants/"+ restaurant.id}
+                    >
+                    <RestaurantCards cards={[restaurant]} />
+                    </Link>
                 ))}
             </div>
         </div>
