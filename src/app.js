@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React, { Children, Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import Header from '../src/components/Header';
 import Body from '../src/components/Body';
@@ -7,6 +7,9 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import About from '../src/components/About';
 import Contact from '../src/components/Contact';
 import Error from '../src/components/Error';
+
+
+const Grocery = lazy(()=> import("./components/Grocery"));
 // ****************nested childs***************
 // const heading = React.createElement("div", {}f}, 
 //                 React.createElement("h1", {}, "hello world from react!")
@@ -102,6 +105,14 @@ const AppRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact/>
+      },
+      {
+        path: "/grocery",
+        element: (
+        <Suspense fallback = {<h1>Loading...</h1>}>
+           <Grocery />
+        </Suspense>
+        ),
       },
       {
         path: "/restaurants/:resId",

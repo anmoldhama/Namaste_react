@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import RestaurantCards from '../components/RestaurantCards';
 import { cards as mockCards } from '../utils/mockData';
 import { Link } from 'react-router-dom';
+import useOnlineStatus from '../utils/useOnlineStatus';
 
 const Body = () => {
     const [filteredCards, setFilteredCards] = useState(mockCards);
@@ -20,6 +21,13 @@ const Body = () => {
         );
         setFilteredRestaurant(searchFilter);
     }
+
+    const onlineStatus = useOnlineStatus();
+
+    if(onlineStatus == false) return (
+       <h1>look's like you are not connected to the internet!</h1>
+    );
+   
 
     return (
         <div className="body">
