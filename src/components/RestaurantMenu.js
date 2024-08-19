@@ -1,32 +1,44 @@
+import { useState } from 'react';
 import useRestaurantMenu from '../utils/useRestaurantMenu';
 import { useParams } from 'react-router-dom';
+import RestaurantCategory from './RestaurantCategory';
 
+const RestaurantMenu = () => {
+  const { resId } = useParams();
+  const resItems = useRestaurantMenu(resId);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-const RestaurantMenu = () =>{
+  if (resItems === null) return <h1 className="text-center text-2xl font-semibold my-8">No Data Found</h1>;
 
-    const { resId } = useParams();
- console.log(resId);
- const resItems  = useRestaurantMenu(resId);
+  const { name } = resItems?.cards[2]?.card?.card?.info;
 
- if(resItems === null) return <h1>No Data Found</h1>;
+  const categories = resItems?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards.filter(
+    (c) => c.card.card["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  );
 
- const {name} = resItems?.cards[2]?.card?.card?.info;
- 
- const {itemCards} = resItems?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[2].card.card;
-//  console.log(itemCards);
+  const toggleAccordion = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
+  return (
+    <div className="max-w-5xl mx-auto p-6">
+      {/* Restaurant Name */}
+      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">{name}</h1>
 
-
-    return(
-        <div>
-        <h1>{name}</h1>
-        <h1>Menu Items</h1>
-        <ul>
-            {itemCards.map((item)=> <li key={item.card.info.id}>{item.card.info.name} - {item.card.info.price}</li>)}
-            
-        </ul>
-        </div>
-    )
-}
+      {/* Menu Categories */}
+      <div className="space-y-4">
+        {categories.map((category, index) => (
+          <RestaurantCategory
+            key={category.card.card.title}
+            category={category}
+            index={index}
+            activeIndex={activeIndex}
+            toggleAccordion={toggleAccordion}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default RestaurantMenu;
