@@ -1,13 +1,19 @@
 import { logo_url } from "../utils/constants";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const [changeButton, setChangeButton] = useState("Login");
 
+  const {isLoggedIn} = useContext(UserContext);
+
+
   const loginButtonHandler = () => {
     setChangeButton(changeButton === "Login" ? "Logout" : "Login");
   };
+
+
 
   return (
     <header className="bg-white shadow-md">
@@ -54,6 +60,9 @@ const Header = () => {
             </li>
             <li className="hover:text-blue-600 transition duration-200">
               Cart
+            </li>
+            <li className="hover:text-blue-600 transition duration-200">
+              {isLoggedIn}
             </li>
           </ul>
         </nav>

@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import RestaurantCards from '../components/RestaurantCards';
 import { cards as mockCards } from '../utils/mockData';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../utils/useOnlineStatus';
 import './css/Body.css'; // Make sure to remove any conflicting styles if necessary
+import UserContext from '../utils/UserContext';
 
 const Body = () => {
     const [filteredCards, setFilteredCards] = useState(mockCards);
     const [filteredRestaurant, setFilteredRestaurant] = useState(mockCards);
     const [searchText, setSearchText] = useState("");
+
+    const {isLoggedIn} = useContext(UserContext);
+    console.log(isLoggedIn);
 
     const topRatedSearchHandler = () => {
         const ratingFilter = filteredCards.filter((res) => res.Rating >= 4.6);
