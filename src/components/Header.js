@@ -2,6 +2,7 @@ import { logo_url } from "../utils/constants";
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
+import {useSelector} from 'react-redux';
 
 const Header = () => {
   const [changeButton, setChangeButton] = useState("Login");
@@ -13,6 +14,8 @@ const Header = () => {
     setChangeButton(changeButton === "Login" ? "Logout" : "Login");
   };
 
+  const cartItems = useSelector((store)=> store.cart.items);
+  console.log(cartItems);
 
 
   return (
@@ -58,8 +61,14 @@ const Header = () => {
                 Grocery
               </Link>
             </li>
-            <li className="hover:text-blue-600 transition duration-200">
-              Cart
+            <li>
+            <Link
+                to="/cart"
+                className="hover:text-blue-600 transition duration-200"
+              >
+                Cart- ({cartItems.length} items)
+              </Link>
+              
             </li>
             <li className="hover:text-blue-600 transition duration-200">
               {isLoggedIn}
